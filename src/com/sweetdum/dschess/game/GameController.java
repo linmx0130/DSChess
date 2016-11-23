@@ -50,7 +50,7 @@ public class GameController {
                     do {
                         Piece newPiece = agents[owner].pawnUpgrade(adapter[owner], bl, i);
                         if ((newPiece instanceof Queen) || (newPiece instanceof Knight) ||
-                                (newPiece instanceof Rock) || (newPiece instanceof Bishop)) {
+                                (newPiece instanceof Rook) || (newPiece instanceof Bishop)) {
                             chessBoard.setPiece(bl, i, newPiece);
                             break;
                         }

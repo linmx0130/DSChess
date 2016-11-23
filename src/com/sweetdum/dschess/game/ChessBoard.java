@@ -14,22 +14,22 @@ class ChessBoard {
     ChessBoard() {
         pieces = new Piece[8][8];
         //init the board
-        pieces[0][0] = new Rock(0);
+        pieces[0][0] = new Rook(0);
         pieces[0][1] = new Knight(0);
         pieces[0][2] = new Bishop(0);
         pieces[0][3] = new King(0);
         pieces[0][4] = new Queen(0);
         pieces[0][5] = new Bishop(0);
         pieces[0][6] = new Knight(0);
-        pieces[0][7] = new Rock(0);
-        pieces[7][0] = new Rock(1);
+        pieces[0][7] = new Rook(0);
+        pieces[7][0] = new Rook(1);
         pieces[7][1] = new Knight(1);
         pieces[7][2] = new Bishop(1);
         pieces[7][3] = new King(1);
         pieces[7][4] = new Queen(1);
         pieces[7][5] = new Bishop(1);
         pieces[7][6] = new Knight(1);
-        pieces[7][7] = new Rock(1);
+        pieces[7][7] = new Rook(1);
         for (int i=0;i<8;++i){
             pieces[1][i] = new Pawn(0,1);
             pieces[6][i] = new Pawn(1,-1);

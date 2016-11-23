@@ -19,7 +19,7 @@ public interface ChessAI {
      * @param adapter the game controller adapter
      * @param x the x coordinate of the pawn
      * @param y the y coordinate of the pawn
-     * @return a piece instance to show the piece you want. Must be in {Knight, Rock, Bishop, Queen}
+     * @return a piece instance to show the piece you want. Must be in {Knight, Rook, Bishop, Queen}
      */
     Piece pawnUpgrade(GameControllerAdapter adapter, int x, int y);
 }
