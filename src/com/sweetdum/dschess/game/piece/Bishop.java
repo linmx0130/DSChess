@@ -18,4 +18,9 @@ public class Bishop extends Piece {
             registerPossibleStep(new Tuple<>(i, -i));
         }
     }
+
+    @Override
+    public String toString() {
+        return "Bishop "+ this.getOwner();
+    }
 }

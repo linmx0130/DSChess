@@ -20,4 +20,9 @@ public class Knight extends Piece {
         registerPossibleStep(new Tuple<>(-1,2));
         registerPossibleStep(new Tuple<>(-1,-2));
     }
+
+    @Override
+    public String toString() {
+        return "Knight "+this.getOwner();
+    }
 }

@@ -45,4 +45,9 @@ public class Tuple<T extends Number> implements Cloneable{
     public Object clone() {
         return new Tuple<>(x1,x2);
     }
+
+    @Override
+    public String toString() {
+        return "( "+x1()+" , " + x2 +" ) ";
+    }
 }

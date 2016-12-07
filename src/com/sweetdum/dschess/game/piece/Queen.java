@@ -20,4 +20,9 @@ public class Queen extends Piece{
             registerPossibleStep(new Tuple<>(0, i));
         }
     }
+
+    @Override
+    public String toString() {
+        return "Queen "+ this.getOwner();
+    }
 }

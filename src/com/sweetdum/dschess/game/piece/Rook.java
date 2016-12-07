@@ -14,4 +14,9 @@ public class Rook extends Piece {
             registerPossibleStep(new Tuple<>(0, i));
         }
     }
+
+    @Override
+    public String toString() {
+        return "Rook "+this.getOwner();
+    }
 }

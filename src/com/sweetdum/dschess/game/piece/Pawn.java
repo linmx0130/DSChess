@@ -7,6 +7,7 @@ import com.sweetdum.dschess.utils.Tuple;
  * Created by Mengxiao Lin on 2016/11/22.
  */
 public class Pawn extends Piece {
+    private int direction;
     /**
      * Construct a pawn.
      * @param owner
@@ -14,6 +15,7 @@ public class Pawn extends Piece {
      */
     public Pawn(int owner, int direction) {
         super(owner);
+        this.direction = direction;
         registerPossibleStep(new Tuple<>(0,direction));
         //special cases
         registerPossibleStep(new Tuple<>(0,2 * direction));
@@ -28,5 +30,10 @@ public class Pawn extends Piece {
 
     public void setPoorPawn(boolean poorPawn) {
         this.poorPawn = poorPawn;
+    }
+
+    @Override
+    public String toString() {
+        return "Pawn "+this.getOwner()+" "+this.direction+" "+this+isPoorPawn();
     }
 }

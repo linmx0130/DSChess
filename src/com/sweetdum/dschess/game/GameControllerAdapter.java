@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Mengxiao Lin on 2016/11/23.
  */
-public class GameControllerAdapter {
+public class GameControllerAdapter implements IGameControllerAdapter{
     private int owner;
     private ChessBoard chessBoard;
     private GameController controller;

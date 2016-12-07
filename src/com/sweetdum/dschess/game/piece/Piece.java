@@ -1,9 +1,11 @@
 package com.sweetdum.dschess.game.piece;
 
 import com.sweetdum.dschess.utils.Tuple;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * The chess piece entity class.
@@ -36,5 +38,38 @@ public abstract class Piece {
 
     protected void registerPossibleStep(Tuple<Integer> step){
         possibleSteps.add(step);
+    }
+
+    @Override
+    public String toString() {
+        throw new NotImplementedException();
+    }
+    public static Piece buildFromString(String desc){
+        Scanner scanner = new Scanner(desc);
+        String type = scanner.next();
+        int owner = scanner.nextInt();
+        Piece ret= null;
+        if (type.equals("Bishop")){
+            ret= new Bishop(owner);
+        }
+        if (type.equals("King")){
+            ret = new King(owner);
+        }
+        if (type.equals("Knight")){
+            ret = new Knight(owner);
+        }
+        if (type.equals("Queen")){
+            ret = new Queen(owner);
+        }
+        if (type.equals("Rook")){
+            ret = new Rook(owner);
+        }
+        if (type.equals("Pawn")){
+            int direction = scanner.nextInt();
+            boolean isPoorPawn = scanner.nextBoolean();
+            ret = new Pawn(owner,direction);
+            ((Pawn)ret).setPoorPawn(isPoorPawn);
+        }
+        return ret;
     }
 }
