@@ -1,5 +1,9 @@
 package com.sweetdum.dschess.server;
 
+import com.sweetdum.dschess.ai.ChessAI;
+import com.sweetdum.dschess.client.ClientAdapter;
+import com.sweetdum.dschess.client.YourAI;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -21,5 +25,6 @@ public class TestClient {
         writer.flush();
         String response = reader.readLine();
         System.out.println(response);
+
     }
 }
