@@ -1,3 +1,4 @@
+
 DSChess
 =====
 The platform for DS Project 2.
@@ -9,4 +10,11 @@ could be used to access the chess board.
 
 Refer to the Javadoc of *GameControllerAdapter* for more details.
 
-The GUI of this platform is coming soon.
+##YourAI
+In order to support C++, this platform utilized Client/Server framework. 
+
+* For Java user, you can simply modify *com.sweetdum.dschess.client.YourAI*.
+* For C++ user, you can simply modify *yourAI.cpp*.
+
+All networking routine are implemented, so just play with APIs.
+
