@@ -24,6 +24,9 @@ public class ListTupleTool {
     }
     public static String getStringFromListTuple(List<Tuple<Integer>> l ){
         StringBuilder buf = new StringBuilder();
+        if (l==null){
+            return "";
+        }
         for (Tuple<Integer> t :l){
             buf.append(t.toString());
         }

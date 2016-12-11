@@ -16,11 +16,11 @@ public class Pawn extends Piece {
     public Pawn(int owner, int direction) {
         super(owner);
         this.direction = direction;
-        registerPossibleStep(new Tuple<>(0,direction));
+        registerPossibleStep(new Tuple<>(direction,0));
         //special cases
-        registerPossibleStep(new Tuple<>(0,2 * direction));
-        registerPossibleStep(new Tuple<>(-1,direction));
-        registerPossibleStep(new Tuple<>(1,direction));
+        registerPossibleStep(new Tuple<>(2 * direction,0));
+        registerPossibleStep(new Tuple<>(direction,-1));
+        registerPossibleStep(new Tuple<>(direction,1));
     }
     boolean poorPawn;
 

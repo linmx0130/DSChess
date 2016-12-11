@@ -30,7 +30,7 @@ public class GameClient {
         responseScanner.next();
         playerId = responseScanner.nextInt();
 
-        ChessAI yourAI = new YourAI();
+        ChessAI yourAI = new YourAI(playerId);
         ClientAdapter adapter = new ClientAdapter(reader, writer);
         //listen
         do {

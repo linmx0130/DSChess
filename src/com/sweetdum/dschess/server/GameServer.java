@@ -60,6 +60,17 @@ public class GameServer {
         controller.setAgent(0, new NetAI(clientReaders[0], clientWriters[0]));
         controller.setAgent(1, new NetAI(clientReaders[1], clientWriters[1]));
         //run the game
-        //TODO
+        do{
+            System.out.println("Chess board:");
+            controller.printChessBoard();
+            controller.nextTurn();
+            int winner = controller.winner();
+            if (winner!=-1) {
+                System.out.println("Game over!");
+                System.out.println("Winner is "+winner);
+                break;
+            }
+        }while(true);
     }
+
 }

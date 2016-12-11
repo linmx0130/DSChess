@@ -32,6 +32,9 @@ public class NetAI implements ChessAI {
             return ;
         }
         Scanner comscan = new Scanner(command);
+        if (!comscan.hasNext()){
+            return;
+        }
         String comWord = comscan.next();
         if (comWord.equals("P")){ //getPieceAt
             int x = comscan.nextInt();
@@ -61,6 +64,7 @@ public class NetAI implements ChessAI {
     @Override
     public Piece pawnUpgrade(IGameControllerAdapter adapter, int x, int y) {
         writer.println("PAWNUPGRADE! "+x+" "+y);
+        writer.flush();
         String pieceDesc;
         try {
             pieceDesc = reader.readLine();

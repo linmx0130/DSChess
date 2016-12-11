@@ -36,7 +36,7 @@ class ChessBoard {
         }
     }
     private boolean inBoard(int x, int y){
-        return 0<=x && x<7 && 0<=y && y<7;
+        return 0<=x && x<=7 && 0<=y && y<=7;
     }
     Piece getPieceAt(int x, int y){
         if (!inBoard(x,y)) return null;
@@ -59,19 +59,19 @@ class ChessBoard {
         if (pieces[x][y] instanceof Pawn) {
             Pawn pawn = (Pawn) pieces[x][y];
             // go forward
-            if (step.x1()==0) {
+            if (step.x2()==0) {
                 if (pieces[nx][ny] != null) return false;
-                if (Math.abs(step.x2()) == 1) return true;
-                if (Math.abs(step.x2()) == 2) {
+                if (Math.abs(step.x1()) == 1) return true;
+                if (Math.abs(step.x1()) == 2) {
                     return (x == 1 && pawn.getOwner() == 0) || (x == 6 && pawn.getOwner() == 1);
                 }
             }else {
                 if (pieces[nx][ny]!=null){
                     return true;
                 }
-                if (pieces[nx][ny - step.x2()]!=null){
-                    if (pieces[nx][ny-step.x2()] instanceof Pawn) {
-                        Pawn npawn = (Pawn) pieces[nx][ny - step.x2()];
+                if (pieces[nx][y]!=null && pieces[nx][ny]==null){
+                    if (pieces[nx][y] instanceof Pawn) {
+                        Pawn npawn = (Pawn) pieces[nx][y];
                         return npawn.isPoorPawn();
                     }
                 }
@@ -83,11 +83,13 @@ class ChessBoard {
         int sigx1 = (int)Math.signum(step.x1());
         int sigx2 = (int)Math.signum(step.x2());
         int stepsCount = Math.max(Math.abs(step.x1()), Math.abs(step.x2()));
-        for (int i=0;i<stepsCount-1;++i){
+        for (int i=1;i<stepsCount;++i){
             int cx =x+sigx1*i;
             int cy = y+sigx2*i;
             if (pieces[cx][cy] !=null) return false;
         }
+        if (pieces[nx][ny]!=null && (pieces[nx][ny].getOwner() == pieces[x][y].getOwner()))
+            return false;
         return true;
     }
 
@@ -100,18 +102,19 @@ class ChessBoard {
      * @return success or not
      */
     boolean movePiece(int x, int y, Tuple<Integer>step, int owner){
+        if (! (pieces[x][y].possibleSteps().contains(step))) return false;
         if (!isPossibleStep(x,y,step)) return false;
         if (pieces[x][y].getOwner() != owner) return false;
         int nx = x + step.x1();
         int ny = y + step.x2();
         if (pieces[x][y] instanceof Pawn){
             Pawn pawn = (Pawn) pieces[x][y];
-            if (Math.abs(step.x2())==2){
+            if (Math.abs(step.x1())==2){
                 pawn.setPoorPawn(true);
             }
-            if (step.x1()!=0){
+            if (step.x2()!=0){
                 if (pieces[nx][ny] == null){
-                    pieces[nx][ny - step.x2()] = null;
+                    pieces[nx][y] = null;
                 }
             }
         }
@@ -138,5 +141,24 @@ class ChessBoard {
     }
     void setPiece(int x, int y, Piece piece){
         pieces[x][y]=piece;
+    }
+
+    /**
+     * check the winner of the board
+     * @return -1 if no one win now
+     */
+    int winner(){
+        boolean[] kingMark = new boolean[2];
+        for (int i=0;i<8;++i){
+            for (int j=0;j<8;++j){
+                if (pieces[i][j] instanceof King){
+                    kingMark[pieces[i][j].getOwner()] = true;
+                }
+            }
+        }
+        if (kingMark[0] && kingMark[1]) return -1;
+        if (kingMark[0]) return 0;
+        if (kingMark[1]) return 1;
+        return -1;
     }
 }

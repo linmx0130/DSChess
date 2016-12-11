@@ -62,4 +62,32 @@ public class GameController {
     public boolean isCurrentTurnFinished() {
         return currentTurnFinished;
     }
+
+    /**
+     * the wrapper of ChessBoard.winner()
+     * @return -1 if no one win
+     */
+    public int winner(){
+        return chessBoard.winner();
+    }
+    public void printChessBoard(){
+        for (int i=0;i<8;++i){
+            for (int j=0;j<8;++j){
+                Piece p = chessBoard.getPieceAt(i,j);
+                if (p==null){
+                    System.out.print("   ");
+                    continue;
+                }
+                if (p instanceof King) System.out.print("K");
+                if (p instanceof Pawn) System.out.print("P");
+                if (p instanceof Queen) System.out.print("Q");
+                if (p instanceof Rook) System.out.print("R");
+                if (p instanceof Bishop) System.out.print("B");
+                if (p instanceof Knight) System.out.print("N");
+                System.out.print(p.getOwner());
+                System.out.print(' ');
+            }
+            System.out.println();
+        }
+    }
 }

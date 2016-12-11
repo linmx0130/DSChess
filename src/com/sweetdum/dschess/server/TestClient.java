@@ -24,7 +24,22 @@ public class TestClient {
         writer.println("KEY"+key);
         writer.flush();
         String response = reader.readLine();
+        int id = Integer.parseInt(response.split(" ")[1]);
         System.out.println(response);
-
+        do{
+            do {
+                response = reader.readLine();
+                System.out.println(response);
+                if (response.startsWith("PAWNUPGRADE!")){
+                    writer.print("Queen ");
+                    writer.println(id);
+                    writer.flush();
+                }
+            }while(!response.equals("ACTION!"));
+            System.out.print("Command: ");
+            String s = cin.nextLine().trim();
+            writer.println(s);
+            writer.flush();
+        }while(true);
     }
 }
