@@ -43,7 +43,8 @@ public class GameClient {
             if (command.equals("PAWNUPGRADE!")){
                 int x = sin.nextInt();
                 int y = sin.nextInt();
-                yourAI.pawnUpgrade(adapter,x,y);
+                writer.println(yourAI.pawnUpgrade(adapter,x,y));
+                writer.flush();
             }
         }while(true);
     }
