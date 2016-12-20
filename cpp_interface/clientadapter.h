@@ -8,7 +8,7 @@ protected:
 	int owner;
 public:
 	Piece(int owner) :owner(owner) {};
-	int owner() {
+	int getOwner() {
 		return this->owner;
 	}
 	virtual std::string toString() = 0;
@@ -61,22 +61,22 @@ public:
 class Pawn : public Piece {
 private:
 	int direction;
-	bool isPoorPawn;
+	bool _isPoorPawn;
 public:
 	Pawn(int owner, int direction) :Piece(owner),direction(direction) {};
 	void setPoorPawn(bool isPoorPawn) {
-		this->isPoorPawn = isPoorPawn;
+		this->_isPoorPawn = isPoorPawn;
 	}
 	bool isPoorPawn() {
-		return this->isPoorPawn;
+		return this->_isPoorPawn;
 	}
-	int direction() { return this->direction; }
+	int getDirection() { return this->direction; }
 	std::string toString() override {
 		char buf[100];
 		memset(buf, 0, sizeof(buf));
-		sprintf(buf, "Pawn %d %d ", this->owner, direction);
+		sprintf(buf, "Pawn %d %d ", this->owner, this->direction);
 		std::string ret(buf);
-		if (isPoorPawn) {
+		if (this->isPoorPawn()) {
 			ret += "true";
 		}
 		else {

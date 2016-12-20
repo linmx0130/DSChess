@@ -15,5 +15,5 @@ void doAction() {
 	
 }
 Piece* pawnUpgrade(int x, int y) {
-
+	return nullptr;
 }
