@@ -69,9 +69,9 @@ class ChessBoard {
                 if (pieces[nx][ny]!=null){
                     return true;
                 }
-                if (pieces[nx][y]!=null && pieces[nx][ny]==null){
-                    if (pieces[nx][y] instanceof Pawn) {
-                        Pawn npawn = (Pawn) pieces[nx][y];
+                if (pieces[x][ny]!=null && pieces[nx][ny]==null){
+                    if (pieces[x][ny] instanceof Pawn) {
+                        Pawn npawn = (Pawn) pieces[x][ny];
                         return npawn.isPoorPawn();
                     }
                 }
@@ -114,7 +114,7 @@ class ChessBoard {
             }
             if (step.x2()!=0){
                 if (pieces[nx][ny] == null){
-                    pieces[nx][y] = null;
+                    pieces[x][ny] = null;
                 }
             }
         }

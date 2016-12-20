@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Created by Mengxiao Lin on 2016/12/7.
@@ -60,9 +61,15 @@ public class GameServer {
         controller.setAgent(0, new NetAI(clientReaders[0], clientWriters[0]));
         controller.setAgent(1, new NetAI(clientReaders[1], clientWriters[1]));
         //run the game
+        int turn = 0;
+        Scanner cin = new Scanner(System.in);
         do{
             System.out.println("Chess board:");
             controller.printChessBoard();
+            System.out.println("=========================");
+            System.out.println("Turn: "+ turn);
+            System.out.println("Press enter to next turn");
+            cin.nextLine();
             controller.nextTurn();
             int winner = controller.winner();
             if (winner!=-1) {
@@ -70,6 +77,7 @@ public class GameServer {
                 System.out.println("Winner is "+winner);
                 break;
             }
+            ++turn;
         }while(true);
     }
 

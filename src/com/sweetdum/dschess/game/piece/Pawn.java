@@ -34,6 +34,6 @@ public class Pawn extends Piece {
 
     @Override
     public String toString() {
-        return "Pawn "+this.getOwner()+" "+this.direction+" "+this+isPoorPawn();
+        return "Pawn "+this.getOwner()+" "+this.direction+" "+this.isPoorPawn();
     }
 }

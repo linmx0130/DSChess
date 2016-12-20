@@ -16,7 +16,7 @@ public class GameClient {
     private static int playerId;
     private static BufferedReader reader;
     private static PrintWriter writer;
-    public static void main() throws IOException{
+    public static void main(String args[]) throws IOException{
         Socket socket = new Socket("localhost",1471);
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         writer = new PrintWriter(socket.getOutputStream());
@@ -30,6 +30,7 @@ public class GameClient {
         responseScanner.next();
         playerId = responseScanner.nextInt();
 
+        //ChessAI yourAI = new HumanAI(playerId);
         ChessAI yourAI = new YourAI(playerId);
         ClientAdapter adapter = new ClientAdapter(reader, writer);
         //listen
