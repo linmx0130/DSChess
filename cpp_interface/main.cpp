@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include "clientadapter.h"
 #include "net.h"
-
+extern int playerId;
 void doAction();
 Piece* pawnUpgrade(int x, int y);
 
@@ -113,9 +113,13 @@ int main() {
 	sendbufs += key;
 	sendbufs += "\n";
 	
-	
 	sendData(sendbufs.c_str());
-
+	{
+		std::string d = receiveData();
+		std::istringstream s(d);
+		s >> playerId;
+		std::cout << "Player ID = " << playerId;
+	}
 	// Receive data until the server closes the connection
 	do {
 		std::string d = receiveData();

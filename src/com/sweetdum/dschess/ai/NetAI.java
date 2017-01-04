@@ -40,7 +40,11 @@ public class NetAI implements ChessAI {
             int x = comscan.nextInt();
             int y = comscan.nextInt();
             Piece p = adapter.getPieceAt(x,y);
-            writer.println(p.toString());
+            if (p!=null) {
+                writer.println(p.toString());
+            }else{
+                writer.println("null");
+            }
             writer.flush();
         }
         if (comWord.equals("S")){
