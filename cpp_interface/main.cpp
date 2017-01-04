@@ -19,8 +19,7 @@ Piece* pawnUpgrade(int x, int y);
 
 #pragma comment(lib, "Ws2_32.lib")
 WSADATA wsaData;
-const unsigned int DEFAULT_BUFLEN = 2048;
-char recvbuf[DEFAULT_BUFLEN];
+
 SOCKET ConnectSocket = INVALID_SOCKET;
 
 void sendData(const char* sendbuf) {
@@ -32,20 +31,30 @@ void sendData(const char* sendbuf) {
 		exit(1);
 	}
 }
-
+const unsigned int DEFAULT_BUFLEN = 2048;
+char recvbuf[DEFAULT_BUFLEN];
+int recvBufPointer = 0;
 std::string receiveData() {
 	std::string ret;
-	do {
-		ZeroMemory(recvbuf, DEFAULT_BUFLEN);
-		int recvbuflen = DEFAULT_BUFLEN;
-		int iResult = recv(ConnectSocket, recvbuf, recvbuflen-1, 0);
-		if (iResult > 0) {
-			ret += recvbuf;
+	while (true) {
+		while (recvbuf[recvBufPointer]) {
+			char c = recvbuf[recvBufPointer];
+			recvBufPointer++;
+			ret += c;
+			if (c == '\n') {
+				return ret;
+			}
 		}
-		if (strlen(recvbuf) != recvbuflen - 1) {
-			break;
-		}
-	} while (true);
+		do {
+			recvBufPointer = 0;
+			ZeroMemory(recvbuf, DEFAULT_BUFLEN);
+			int recvbuflen = DEFAULT_BUFLEN;
+			int iResult = recv(ConnectSocket, recvbuf, recvbuflen - 1, 0);
+			if (strlen(recvbuf) != recvbuflen - 1) {
+				break;
+			}
+		} while (true);
+	}
 	return ret;
 }
 
@@ -117,6 +126,8 @@ int main() {
 	{
 		std::string d = receiveData();
 		std::istringstream s(d);
+		std::string ok;
+		s >> ok;
 		s >> playerId;
 		std::cout << "Player ID = " << playerId;
 	}

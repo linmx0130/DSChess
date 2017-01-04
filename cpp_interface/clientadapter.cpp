@@ -42,7 +42,11 @@ Piece* getPieceAt(int x, int y) {
 	memset(buf, 0, sizeof(buf));
 	sprintf(buf, "P %d %d\n", x, y);
 	sendData(buf);
-	std::string response = receiveData();
+	std::string response;
+	do {
+		response = receiveData();
+		if (response.substr(0,7)!="ACTION!") break;
+	} while (true);
 	return buildPieceFromString(response);
 }
 
@@ -51,8 +55,9 @@ bool movePiece(int x, int y, int dx, int dy) {
 	memset(buf, 0, sizeof(buf));
 	sprintf(buf, "M %d %d %d %d\n", x, y,dx,dy);
 	sendData(buf);
-	std::string response = receiveData();
-	if (response == "true\n") return true;
+	std::string response;
+	response = receiveData();
+	if (response == "true\r\n") return true;
 	return false;
 }
 
@@ -61,7 +66,11 @@ std::vector<std::pair<int, int> > getPossibleStepsOfPiece(int x, int y) {
 	memset(buf, 0, sizeof(buf));
 	sprintf(buf, "S %d %d\n", x, y);
 	sendData(buf);
-	std::string response = receiveData();
+	std::string response;
+	do {
+		response = receiveData();
+		if (response.substr(0, 7) != "ACTION!") break;
+	} while (true);
 	std::vector<std::pair<int,int> > ret;
 	std::istringstream sin(response);
 	do {

@@ -55,6 +55,9 @@ class ChessBoard {
         int nx = x + step.x1();
         int ny = y + step.x2();
         if (!inBoard(nx,ny)) return false;
+        if (pieces[nx][ny]!=null){
+            if (pieces[nx][ny].getOwner() == pieces[x][y].getOwner()) return false;
+        }
         // special case : pawn
         if (pieces[x][y] instanceof Pawn) {
             Pawn pawn = (Pawn) pieces[x][y];
@@ -102,6 +105,7 @@ class ChessBoard {
      * @return success or not
      */
     boolean movePiece(int x, int y, Tuple<Integer>step, int owner){
+        if (pieces[x][y]==null) return false;
         if (! (pieces[x][y].possibleSteps().contains(step))) return false;
         if (!isPossibleStep(x,y,step)) return false;
         if (pieces[x][y].getOwner() != owner) return false;

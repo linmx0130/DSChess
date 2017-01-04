@@ -25,7 +25,15 @@ void doAction() {
 			}
 		}
 	}
-
+	do {
+		int t = rand() % mychess.size();
+		std::vector<std::pair<int, int> > pl = getPossibleStepsOfPiece(mychess[t].first, mychess[t].second);
+		if (pl.size() != 0) {
+			int k = rand() % pl.size();
+			movePiece(mychess[t].first, mychess[t].second, pl[k].first, pl[k].second);
+			break;
+		}
+	} while (true);
 }
 Piece* pawnUpgrade(int x, int y) {
 	return new Queen(playerId);
