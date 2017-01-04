@@ -43,7 +43,7 @@ public class NetAI implements ChessAI {
             if (p!=null) {
                 writer.println(p.toString());
             }else{
-                writer.println("null");
+                writer.println("null -1");
             }
             writer.flush();
         }

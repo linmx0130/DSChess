@@ -30,8 +30,8 @@ public class GameClient {
         responseScanner.next();
         playerId = responseScanner.nextInt();
 
-        //ChessAI yourAI = new HumanAI(playerId);
-        ChessAI yourAI = new YourAI(playerId);
+        ChessAI yourAI = new HumanAI(playerId);
+        //ChessAI yourAI = new YourAI(playerId);
         ClientAdapter adapter = new ClientAdapter(reader, writer);
         //listen
         do {
