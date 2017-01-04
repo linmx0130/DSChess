@@ -73,6 +73,7 @@ public class GameServer {
             controller.nextTurn();
             int winner = controller.winner();
             if (winner!=-1) {
+                controller.printChessBoard();
                 System.out.println("Game over!");
                 System.out.println("Winner is "+winner);
                 break;
