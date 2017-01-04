@@ -27,8 +27,11 @@ public class ClientAdapter implements IGameControllerAdapter {
         writer.println("P "+x+" "+y);
         writer.flush();
         try {
-            String response = reader.readLine();
-            return Piece.buildFromString(response);
+            do {
+                String response = reader.readLine();
+                if ("ACTION!".equals(response)) continue;
+                return Piece.buildFromString(response);
+            }while(true);
         }catch (IOException e) {
             return null;
         }
@@ -39,8 +42,11 @@ public class ClientAdapter implements IGameControllerAdapter {
         writer.println("S "+x+" "+y);
         writer.flush();
         try {
-            String response = reader.readLine();
-            return ListTupleTool.getListTupleFromString(response);
+            do {
+                String response = reader.readLine();
+                if ("ACTION!".equals(response)) continue;
+                return ListTupleTool.getListTupleFromString(response);
+            }while (true);
         }catch (IOException e) {
             return null;
         }
@@ -51,8 +57,11 @@ public class ClientAdapter implements IGameControllerAdapter {
         writer.println("M "+x+" "+y+" "+step.x1()+" "+step.x2());
         writer.flush();
         try {
-            String response = reader.readLine();
-            return Boolean.parseBoolean(response);
+            do {
+                String response = reader.readLine();
+                if ("ACTION!".equals(response)) continue;
+                return Boolean.parseBoolean(response);
+            }while(true);
         }catch (IOException e) {
             return false;
         }

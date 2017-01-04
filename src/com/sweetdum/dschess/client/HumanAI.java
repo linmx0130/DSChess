@@ -31,7 +31,8 @@ public class HumanAI implements ChessAI {
             int x = sin.nextInt();
             int y = sin.nextInt();
             Piece p = adapter.getPieceAt(x,y);
-            System.out.println(p.toString());
+            if (p==null) System.out.println("NULL");
+            else System.out.println(p.toString());
         }
         if (word.equals("S")){
             int x = sin.nextInt();
