@@ -41,7 +41,7 @@ public class GameClient {
             if (comWord.equals("ACTION!")){
                 yourAI.doAction(adapter);
             }
-            if (command.equals("PAWNUPGRADE!")){
+            if (comWord.equals("PAWNUPGRADE!")){
                 int x = sin.nextInt();
                 int y = sin.nextInt();
                 writer.println(yourAI.pawnUpgrade(adapter,x,y));
