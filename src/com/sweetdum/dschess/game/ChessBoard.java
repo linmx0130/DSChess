@@ -105,6 +105,7 @@ class ChessBoard {
      * @return success or not
      */
     boolean movePiece(int x, int y, Tuple<Integer>step, int owner){
+        if (!inBoard(x,y)) return false;
         if (pieces[x][y]==null) return false;
         if (! (pieces[x][y].possibleSteps().contains(step))) return false;
         if (!isPossibleStep(x,y,step)) return false;
